@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taverna/screens/home_screen.dart';
-import 'package:taverna/widgets/coin_display.dart';
+import 'package:taverna/screens/store_screen.dart';
 
 enum AppRoutes {
   home,
@@ -10,7 +10,7 @@ enum AppRoutes {
 
 class TavernaSorte extends StatefulWidget {
   TavernaSorte({super.key});
-  AppRoutes actualRoute = AppRoutes.home;
+  AppRoutes actualRoute = AppRoutes.store;
 
 
   @override
@@ -32,7 +32,7 @@ class _TavernaSorteState extends State<TavernaSorte> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end, 
             children: [
-              CoinDisplay(100),
+              Text('🪙 100'),
             ],
           ),
         ), 
@@ -40,7 +40,7 @@ class _TavernaSorteState extends State<TavernaSorte> {
         body: Center(child: switch(widget.actualRoute) {
           AppRoutes.home => const HomeScreen(),
           AppRoutes.game => const Text('Game'),
-          AppRoutes.store => const Text('Store'),
+          AppRoutes.store => const StoreScreen(),
         }),
       )
     );
