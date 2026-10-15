@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppButton extends StatefulWidget {
+class AppButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   const AppButton(this.text, {
@@ -8,27 +8,22 @@ class AppButton extends StatefulWidget {
     this.onPressed,
   });
 
-  @override
-  State<AppButton> createState() => _AppButtonState();
-}
-
-class _AppButtonState extends State<AppButton> {
-  @override
+@override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onPressed,
+      onTap: onPressed,
 
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 25, horizontal: 50),
         width: double.infinity,
-        height: 150,
+        height: 120,
         decoration: BoxDecoration(
           color: Colors.deepPurple,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Center(
           child: Text(
-            widget.text,
+            text,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 30,

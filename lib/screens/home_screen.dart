@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:taverna/widgets/app_button.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    super.key,
-    
-  });
+class HomeScreen extends StatelessWidget {
+  final VoidCallback? onGamePressed;
+  final VoidCallback? onStorePressed;
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+  const HomeScreen(this.onGamePressed, this.onStorePressed, {super.key});
 
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -29,11 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
         SizedBox(height: 80),
         AppButton(
           'Jogar',
-          onPressed: null,
+          onPressed: onGamePressed,
         ),
         AppButton(
           'Loja',
-          onPressed: null,
+          onPressed: onStorePressed,
         ),
       ]
     );
