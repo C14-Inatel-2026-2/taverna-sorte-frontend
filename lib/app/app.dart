@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taverna/screens/home_screen.dart';
 import 'package:taverna/screens/store_screen.dart';
+import 'package:taverna/widgets/app_appbar.dart';
 
 enum AppRoutes {
   home,
@@ -37,15 +38,7 @@ class _TavernaSorteState extends State<TavernaSorte> {
       ),
 
       home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end, 
-            children: [
-              Text('🪙 100'),
-            ],
-          ),
-        ), 
-
+        appBar: AppAppbar(),
         body: Center(child: switch(actualRoute) {
           AppRoutes.home => HomeScreen(() => changeRoute(AppRoutes.game),() => changeRoute(AppRoutes.store)),
           AppRoutes.game => const Text('Game'),
