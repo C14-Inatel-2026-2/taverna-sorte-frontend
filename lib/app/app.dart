@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taverna/screens/home_screen.dart';
 import 'package:taverna/screens/store_screen.dart';
+import 'package:taverna/widgets/app_appbar.dart';
 
 enum AppRoutes {
   home,
@@ -9,8 +10,7 @@ enum AppRoutes {
 }
 
 class TavernaSorte extends StatefulWidget {
-  TavernaSorte({super.key});
-  AppRoutes actualRoute = AppRoutes.store;
+  const TavernaSorte({super.key});
 
 
   @override
@@ -18,8 +18,18 @@ class TavernaSorte extends StatefulWidget {
 }
 
 class _TavernaSorteState extends State<TavernaSorte> {
-@override
+ AppRoutes actualRoute = AppRoutes.home;
+
+ @override
   Widget build(BuildContext context) {
+
+    void changeRoute(AppRoutes newRoute) {
+      print("Changing route to: $newRoute");
+      setState(() {
+        actualRoute = newRoute;
+      });
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Taverna da Sorte',
@@ -28,17 +38,9 @@ class _TavernaSorteState extends State<TavernaSorte> {
       ),
 
       home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end, 
-            children: [
-              Text('🪙 100'),
-            ],
-          ),
-        ), 
-
-        body: Center(child: switch(widget.actualRoute) {
-          AppRoutes.home => const HomeScreen(),
+        appBar: AppAppbar(),
+        body: Center(child: switch(actualRoute) {
+          AppRoutes.home => HomeScreen(() => changeRoute(AppRoutes.game),() => changeRoute(AppRoutes.store)),
           AppRoutes.game => const Text('Game'),
           AppRoutes.store => const StoreScreen(),
         }),
