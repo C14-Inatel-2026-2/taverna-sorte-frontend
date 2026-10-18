@@ -1,0 +1,41 @@
+jenkins:
+  systemMessage: "Taverna Sorte Frontend - Jenkins"
+  numExecutors: 1
+  mode: NORMAL
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "${JENKINS_ADMIN_ID}"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+jobs:
+  - script: |
+      multibranchPipelineJob('taverna-sorte-frontend') {
+          branchSources {
+              branchSource {
+                  source {
+                      git {
+                          id('taverna-sorte-frontend-git')
+                          remote(System.getenv('GITHUB_REPO_URL'))
+                          traits {
+                              gitBranchDiscovery()
+                          }
+                      }
+                  }
+              }
+          }
+          factory {
+              workflowBranchProjectFactory {
+                  scriptPath('Jenkinsfile')
+              }
+          }
+          triggers {
+              periodicFolderTrigger {
+                  interval('1m')
+              }
+          }
+      }

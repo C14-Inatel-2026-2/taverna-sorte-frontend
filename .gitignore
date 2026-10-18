@@ -120,3 +120,6 @@ app.*.symbols
 
 # IDE files
 *.iml
+
+#Secrets
+.env
