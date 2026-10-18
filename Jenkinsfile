@@ -9,5 +9,11 @@ pipeline {
                 archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-release.apk', fingerprint: true
             }
         }
+        stage('Tests') {
+            steps {
+                sh 'flutter pub get'
+                sh 'flutter test'
+            }
+        }
     }
 }
