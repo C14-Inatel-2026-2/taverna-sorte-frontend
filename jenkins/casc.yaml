@@ -39,3 +39,14 @@ jobs:
               }
           }
       }
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "GITHUB_PAGES"
+              username: "${PAGES_GITHUB_USER:-nao-configurado}"
+              password: "${PAGES_GITHUB_TOKEN:-nao-configurado}"
+              description: "Token do GitHub para publicar no GitHub Pages"
