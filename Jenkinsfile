@@ -27,6 +27,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'GITHUB_PAGES', usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
                     sh '''
                         cd build/web
+                        rm -rf .git
                         git init
                         git checkout -b gh-pages
                         git add .
