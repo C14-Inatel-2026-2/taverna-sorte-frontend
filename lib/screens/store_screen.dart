@@ -11,19 +11,24 @@ class StoreScreen extends StatefulWidget {
 class _StoreScreenState extends State<StoreScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(height: 80),
-        ...itemCards(
-          [
-            {'icon': '🍺', 'name': 'Cerveja', 'price': 10},
-            {'icon': '🍷', 'name': 'Vinho', 'price': 20},
-            {'icon': '🥃', 'name': 'Whisky', 'price': 30},
-            {'icon': '🍸', 'name': 'Coquetel', 'price': 40},
-          ]
-        )
-      ]
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Loja'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 80),
+          ...itemCards(
+            [
+              {'icon': '🍺', 'name': 'Cerveja', 'price': 10},
+              {'icon': '🍷', 'name': 'Vinho', 'price': 20},
+              {'icon': '🥃', 'name': 'Whisky', 'price': 30},
+              {'icon': '🍸', 'name': 'Coquetel', 'price': 40},
+            ]
+          )
+        ]
+      ),
     );
   }
 }

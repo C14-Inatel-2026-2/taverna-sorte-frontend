@@ -8,7 +8,7 @@ class MockCallback extends Mock {
 }
 void main() {
 
-  testWidgets('Verifica se o nome esta aparecendo corretamente no AppButton', (tester) async {
+  testWidgets('Verify that the text is displayed correctly in the AppButton', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -19,9 +19,8 @@ void main() {
 
     expect(find.text('Qualquer coisa'), findsOneWidget);
   });
-  testWidgets(
-      'AppButton chama onPressed apenas uma vez quando clicado',
-      (tester) async {
+ 
+  testWidgets('Verify that the AppButton calls onPressed only once when clicked', (tester) async {
         var chamadas = 0;
 
         await tester.pumpWidget(
@@ -42,7 +41,8 @@ void main() {
         expect(chamadas, 1);
       },
     );
-  testWidgets('Verifica se o botão AppButton não ativa o onPressed sem ser acionado', (tester) async {
+  
+  testWidgets('Verify that the AppButton does not call onPressed when not pressed', (tester) async {
     var chamadas = 0;
 
     await tester.pumpWidget(

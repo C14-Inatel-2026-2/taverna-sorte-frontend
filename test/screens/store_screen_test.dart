@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:taverna/screens/store_screen.dart';
 
 void main() {
 
-  test('Verifica se o tamanho da lista retornada por itemCards é igual ao tamanho da lista de entrada', () {
+  test('Verify that the length of the list returned by `itemCards` matches the length of the `entry` list.', () {
     final items = [
       {'icon': '🍺', 'name': 'Cerveja', 'price': 10},
       {'icon': '🍷', 'name': 'Vinho', 'price': 20},
@@ -16,7 +15,8 @@ void main() {
 
     expect(result.length, equals(items.length));
   });
-  test('Verifica se a função itemCards retorna a lista correta de ItemCard', () {
+  
+  test('Verify that the function `itemCards` returns the correct list of `ItemCard`', () {
     final items = [
       {'icon': '🍺', 'name': 'Cerveja', 'price': 10},
       {'icon': '🍷', 'name': 'Vinho', 'price': 20},
@@ -40,7 +40,7 @@ void main() {
     expect(result[3].price, equals(40));
   });
 
-  test('Verificando se itemCards com lista vazia retorna lista vazia', () {
+  test('Verify that the function `itemCards` returns an empty list when given an empty list', () {
     expect(itemCards([]), isEmpty);
   });
 }
