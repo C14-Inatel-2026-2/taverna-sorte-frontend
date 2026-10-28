@@ -8,7 +8,7 @@ class  MockCallback extends Mock {
 }
 void main() {
 
-  testWidgets('Verifica se os parametros estão sendo passados corretamente para o ItemCard', (tester) async {
+  testWidgets('Verify that the parameters are being passed correctly to the ItemCard', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -21,9 +21,8 @@ void main() {
     expect(find.text('Qualque coisa'), findsOneWidget);
     expect(find.text('🪙 666'), findsOneWidget);
   });
-  testWidgets(
-    'Verifica se o botão ItemCard chama o onPressed apenas uma vez quando chamado',
-    (tester) async {
+
+  testWidgets('Verify that the ItemCard calls onPressed only once when clicked', (tester) async {
       var chamadas = 0;
 
       await tester.pumpWidget(
@@ -39,7 +38,8 @@ void main() {
       expect(chamadas, 1);
     },
   );
-  testWidgets('Verifica se o botão ItemCard não ativa o onPressed sem ser acionado', (tester) async {
+
+  testWidgets('Verify that the ItemCard does not call onPressed when not pressed', (tester) async {
     var chamadas = 0;
 
     await tester.pumpWidget(
