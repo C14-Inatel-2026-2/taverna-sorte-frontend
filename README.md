@@ -21,19 +21,19 @@ Os requisitos funcionais descrevem as funcionalidades que o aplicativo deve ofer
 
 - **RF01 — Minijogos:** disponibilizar interfaces para os minijogos de aposta e probabilidade, incluindo dados e roletas.
 - **RF02 — Navegação:** permitir a navegação entre as telas do aplicativo por meio de rotas nomeadas.
-- **RF03 — Loja:** permitir que o jogador visualize os itens e poções disponíveis para compra.
-- **RF04 — Inventário:** permitir a visualização dos itens adquiridos pelo jogador.
+- **RF03 — Loja:** permitir que o jogador visualize os itens disponíveis e realize compras utilizando seu saldo de moedas, respeitando as regras de saldo e capacidade do inventário.
+- **RF04 — Inventário:** permitir que o jogador visualize os itens adquiridos, respeitando o limite de 3 itens por inventário.
 - **RF05 — Saldo de ouro:** apresentar o saldo de ouro disponível para o jogador.
-- **RF06 — Histórico de partidas:** disponibilizar uma tela para consultar as partidas realizadas pelo jogador, exibindo o tipo de jogo, valor apostado, resultado, prêmio obtido e data.
-- **RF07 — Ordenação do histórico:** apresentar as partidas da mais recente para a mais antiga.
-- **RF08 — Histórico vazio:** informar ao jogador quando não houver partidas registradas.
+- **RF06 — Histórico de partidas (em desenvolvimento):** disponibilizar uma tela para consultar as partidas realizadas pelo jogador, exibindo o tipo de jogo, valor apostado, resultado, prêmio obtido e data.
+- **RF07 — Ordenação do histórico (em desenvolvimento):** apresentar as partidas da mais recente para a mais antiga.
+- **RF08 — Histórico vazio (em desenvolvimento):** informar ao jogador quando não houver partidas registradas.
 
 ## Requisitos não funcionais
 
 Os requisitos não funcionais descrevem características de qualidade, segurança e tecnologias utilizadas no desenvolvimento.
 
 - **RNF01 — Tecnologia:** o frontend deve ser desenvolvido utilizando Dart e Flutter.
-- **RNF02 — Comunicação com o servidor:** os resultados dos jogos e as operações que dependem de regras de negócio devem ser processados pelo backend.
+- **RNF02 — Comunicação com o servidor:** utilizar o backend para processar regras de negócio, autenticação, operações de compra, resultados dos jogos e consulta do histórico de partidas.
 - **RNF03 — Navegação:** utilizar rotas nomeadas para organizar a navegação entre as telas.
 - **RNF04 — Segurança:** informações pessoais e dados que dependem de autenticação devem ser tratados conforme as regras de segurança do backend.
 - **RNF05 — Compatibilidade:** permitir a execução do aplicativo em navegadores compatíveis com Flutter Web.
