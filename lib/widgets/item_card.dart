@@ -6,7 +6,7 @@ class ItemCard extends StatefulWidget {
   final String name;
   final int price;
 
-  ItemCard({super.key, this.onPressed, required this.icon, required this.name, required this.price});
+  const ItemCard({super.key, this.onPressed, required this.icon, required this.name, required this.price});
 
   @override
   State<ItemCard> createState() => _ItemCardState();

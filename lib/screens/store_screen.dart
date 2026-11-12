@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taverna/widgets/item_card.dart';
+import 'package:taverna/widgets/item_popup.dart';
 
 class StoreScreen extends StatefulWidget {
   const StoreScreen({super.key});
@@ -15,8 +16,7 @@ class _StoreScreenState extends State<StoreScreen> {
       appBar: AppBar(
         title: const Text('Loja'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: ListView(
         children: [
           SizedBox(height: 80),
           ...itemCards(
@@ -31,18 +31,18 @@ class _StoreScreenState extends State<StoreScreen> {
       ),
     );
   }
-}
-
-
-List<ItemCard> itemCards(List<Map<String, dynamic>> items) {
-  return items.map((item) {
-    return ItemCard(
-      icon: item['icon'],
-      name: item['name'],
-      price: item['price'],
-      onPressed: () {},
-    );
-  }).toList();
+    List<ItemCard> itemCards(List<Map<String, dynamic>> items) {
+    return items.map((item) {
+      return ItemCard(
+        icon: item['icon'],
+        name: item['name'],
+        price: item['price'],
+        onPressed: () {
+          Navigator.of(context).push(ItemPopup<void>(title: item['name'], description: 'Preço: ${item['price']} moedas'));
+        },
+      );
+    }).toList();
+  }
 }
 
 
