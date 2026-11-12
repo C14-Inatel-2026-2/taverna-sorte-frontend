@@ -3,8 +3,6 @@ import 'package:taverna/app/routes/routes.dart';
 import 'package:taverna/widgets/app_button.dart';
 
 class HomeScreen extends StatelessWidget {
-
-
   const HomeScreen({super.key});
 
   @override
