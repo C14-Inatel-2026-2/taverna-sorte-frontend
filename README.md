@@ -2,7 +2,7 @@
 
 Plataforma de entretenimento com minijogos de aposta e probabilidade, moeda virtual (ouro), loja de itens e inventário, com tema de taverna medieval mágica. Este repositório contém o **frontend**, feito em Dart/Flutter. O backend (Java) fica em outro repositório: [taverna-sorte-backend](https://github.com/C14-Inatel-2026-2/taverna-sorte-backend).
 
-Site publicado: https://c14-inatel-2026-2.github.io/taverna-sorte-frontend/
+O aplicativo é mobile (Android) e é distribuído como APK, gerado pelo pipeline do Jenkins.
 
 ## Funcionalidades
 
@@ -36,10 +36,10 @@ Os requisitos não funcionais descrevem características de qualidade, seguranç
 - **RNF02 — Comunicação com o servidor:** utilizar o backend para processar regras de negócio, autenticação, operações de compra, resultados dos jogos e consulta do histórico de partidas.
 - **RNF03 — Navegação:** utilizar rotas nomeadas para organizar a navegação entre as telas.
 - **RNF04 — Segurança:** informações pessoais e dados que dependem de autenticação devem ser tratados conforme as regras de segurança do backend.
-- **RNF05 — Compatibilidade:** permitir a execução do aplicativo em navegadores compatíveis com Flutter Web.
+- **RNF05 — Compatibilidade:** permitir a execução do aplicativo em dispositivos Android.
 - **RNF06 — Testabilidade:** possuir testes automatizados utilizando `flutter_test`.
 - **RNF07 — Integração contínua:** utilizar Jenkins para automatizar a compilação e a execução dos testes.
-- **RNF08 — Publicação:** disponibilizar a versão web por meio do GitHub Pages.
+- **RNF08 — Publicação:** disponibilizar o APK do aplicativo como artefato do Jenkins.
 
 ## Tecnologias
 
@@ -59,7 +59,7 @@ flutter pub get
 flutter run
 ```
 
-Para rodar no navegador: `flutter run -d chrome`.
+O `flutter run` abre o app no emulador Android ou no celular conectado via USB.
 
 ## Testes
 
@@ -71,14 +71,13 @@ Os testes ficam na pasta `test/` e cobrem a tela da loja e os widgets `ItemCard`
 
 ## CI/CD com Jenkins
 
-O pipeline roda no Jenkins (sem GitHub Actions) e tem quatro stages:
+O pipeline roda no Jenkins (sem GitHub Actions) e tem três stages:
 
 | Stage | O que faz |
 |---|---|
-| Build | Gera o APK (`flutter build apk --release`) e arquiva o artefato |
-| Tests | Roda os testes (`flutter test`) |
-| Build Web | Gera o site (`flutter build web --release`) |
-| Deploy | Publica o site no GitHub Pages (somente na branch `main`) |
+| Tests | Instala as dependências (`flutter pub get`) e roda os testes (`flutter test`) |
+| Build | Gera o APK (`flutter build apk --release`); só roda se os testes passarem |
+| Deploy | Arquiva o APK de release como artefato do build (somente na branch `main`) |
 
 ### Como subir o Jenkins
 
@@ -94,10 +93,8 @@ cp .env.example .env
 |---|---|
 | `JENKINS_ADMIN_ID` / `JENKINS_ADMIN_PASSWORD` | Usuário e senha de acesso ao Jenkins |
 | `GITHUB_REPO_URL` | URL do repositório que o Jenkins monitora |
-| `PAGES_GITHUB_USER` | Usuário do GitHub que publica o site |
-| `PAGES_GITHUB_TOKEN` | Token clássico do GitHub com escopo `public_repo`, de uma conta com permissão de escrita no repositório |
 
-O arquivo `.env` está no `.gitignore`. Nunca faça commit do token.
+O arquivo `.env` está no `.gitignore`. Nunca faça commit dele.
 
 2. Suba o container (a primeira vez demora, pois baixa o Flutter e o Android SDK):
 
@@ -109,9 +106,11 @@ docker-compose up -d --build
 
 ### Como funciona o deploy
 
-- O stage **Build Web** gera o site com `--base-href /taverna-sorte-frontend/`, necessário porque o GitHub Pages serve o projeto dentro desse caminho.
-- O stage **Deploy** roda apenas na `main`. Ele envia o conteúdo de `build/web` para a branch `gh-pages`, usando a credencial `GITHUB_PAGES`, cadastrada em `jenkins/casc.yaml` a partir das variáveis do `.env`.
-- O GitHub Pages publica o site automaticamente a partir da branch `gh-pages`.
+O app é mobile, então o deploy é a entrega do APK instalável:
+
+- O stage **Build** gera o APK de release, depois que os testes passam.
+- O stage **Deploy** roda apenas na `main` e arquiva o `app-release.apk` como artefato do build.
+- Para baixar o APK, abra o build no Jenkins e clique em **Build Artifacts** → `app-release.apk`. Depois é só copiar para o celular Android e instalar (é preciso permitir a instalação de fontes desconhecidas).
 
 ## Equipe
 
