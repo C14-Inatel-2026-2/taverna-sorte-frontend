@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
-class DismissibleDialog<T> extends PopupRoute<T> {
+class ItemPopup<T> extends PopupRoute<T> {
+
+  final String title;
+  final String description;
+
+  ItemPopup({
+    required this.title,
+    required this.description,
+  });
+
   @override
   Color? get barrierColor => Colors.black.withAlpha(0x50);
-
-  // This allows the popup to be dismissed by tapping the scrim or by pressing
-  // the escape key on the keyboard.
+  
   @override
   bool get barrierDismissible => true;
 
   @override
-  String? get barrierLabel => 'Dismissible Dialog';
+  String? get barrierLabel => 'Popup para compra do item $title';
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 300);
@@ -22,14 +29,11 @@ class DismissibleDialog<T> extends PopupRoute<T> {
     Animation<double> secondaryAnimation,
   ) {
     return Center(
-      // Provide DefaultTextStyle to ensure that the dialog's text style
-      // matches the rest of the text in the app.
       child: DefaultTextStyle(
         style: Theme.of(context).textTheme.bodyMedium!,
-        // UnconstrainedBox is used to make the dialog size itself
-        // to fit to the size of the content.
         child: UnconstrainedBox(
           child: Container(
+            width: 300,
             padding: const .all(20.0),
             decoration: BoxDecoration(
               borderRadius: .circular(10),
@@ -38,11 +42,28 @@ class DismissibleDialog<T> extends PopupRoute<T> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'Dismissible Dialog',
+                  title,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 20),
-                const Text('Tap in the scrim or press escape key to dismiss.'),
+                Text(description),
+                const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Text(
+                      'Fechar',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

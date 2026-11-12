@@ -38,7 +38,7 @@ class _StoreScreenState extends State<StoreScreen> {
         name: item['name'],
         price: item['price'],
         onPressed: () {
-          Navigator.of(context).push(DismissibleDialog<void>());
+          Navigator.of(context).push(ItemPopup<void>(title: item['name'], description: 'Preço: ${item['price']} moedas'));
         },
       );
     }).toList();
