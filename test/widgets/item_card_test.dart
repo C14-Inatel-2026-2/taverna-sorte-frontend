@@ -12,7 +12,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: ItemCard(name: '🤠', icon: 'Qualque coisa', price: 666, onPressed: () {})
+          body: ItemCard(name: 'Qualque coisa', price: 666, onPressed: () {})
         ),
       ),
     );
@@ -28,7 +28,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ItemCard(name: '🤠', icon: 'Qualque coisa', price: 666, onPressed: () {chamadas++;})
+            body: ItemCard(name: 'Qualque coisa', price: 666, onPressed: () {chamadas++;})
           ),
         ),
       );
@@ -45,7 +45,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: ItemCard(name: '🤠', icon: 'Qualque coisa', price: 666, onPressed: () {chamadas++;})
+          body: ItemCard(name: 'Qualque coisa', price: 666, onPressed: () {chamadas++;})
         ),
       ),
     );
