@@ -4,10 +4,12 @@ class ItemPopup<T> extends PopupRoute<T> {
 
   final String title;
   final String description;
+  final int price;
 
   ItemPopup({
     required this.title,
     required this.description,
+    required this.price
   });
 
   @override
@@ -40,13 +42,19 @@ class ItemPopup<T> extends PopupRoute<T> {
               color: Colors.white,
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
                   title,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 20),
-                Text(description),
+                Text(
+                  description,
+                  textAlign: TextAlign.center,
+                  ),
+                const SizedBox(height: 20),
+                Text('Preço: $price moedas'),
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {

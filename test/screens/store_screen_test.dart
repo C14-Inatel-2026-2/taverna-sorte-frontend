@@ -28,7 +28,6 @@ void main() {
 
     expect(cards.length, equals(expected.length));
     for (var i = 0; i < expected.length; i++) {
-      expect(cards[i].icon, equals(expected[i].$1));
       expect(cards[i].name, equals(expected[i].$2));
       expect(cards[i].price, equals(expected[i].$3));
     }

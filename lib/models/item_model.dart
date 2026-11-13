@@ -2,7 +2,7 @@ class ItemModel {
   final int id;
   final String name;
   final int price;
-  final String multiplier;
+  final int multiplier;
   final String description;
 
   ItemModel({

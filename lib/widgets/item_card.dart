@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class ItemCard extends StatefulWidget {
   final VoidCallback? onPressed;
-  final String icon;
   final String name;
   final int price;
 
-  const ItemCard({super.key, this.onPressed, required this.icon, required this.name, required this.price});
+  const ItemCard({super.key, this.onPressed, required this.name, required this.price});
 
   @override
   State<ItemCard> createState() => _ItemCardState();
@@ -30,14 +29,6 @@ class _ItemCardState extends State<ItemCard> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                widget.icon,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
               Text(
                 widget.name,
                 style: TextStyle(

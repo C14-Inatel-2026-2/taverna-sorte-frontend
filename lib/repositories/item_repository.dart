@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:taverna/core/api_client.dart';
+import 'package:taverna/models/item_model.dart';
 
 abstract class IItemRepository {
-  Future<List<Map<String, dynamic>>> getItems();
+  Future<List<ItemModel>> getItems();
 }
 
 class ItemRepository implements IItemRepository {
@@ -10,11 +13,24 @@ class ItemRepository implements IItemRepository {
   ItemRepository({required this.client});
 
   @override
-  Future<List<Map<String, dynamic>>> getItems() async {
-    await client.get(
+  Future<List<ItemModel>> getItems() async {
+    final response =await client.get(
       url: 'https://taverna-sorte-backend.onrender.com/shop/items',
     );
 
-    throw UnimplementedError();
+    if (response.statusCode == 200){
+      final List<ItemModel> items = [];
+
+      final body = jsonDecode(response.body);
+
+      body.map((unity) {
+        final ItemModel item = ItemModel.fromMap(unity);
+        items.add(item);
+      }).toList();
+
+      return items;
+    } else {
+      throw Exception('Falha em carregar os itens da loja. Código de status: ${response.statusCode}');
+    }
   }
 }
