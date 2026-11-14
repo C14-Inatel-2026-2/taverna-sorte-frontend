@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taverna/widgets/tavern_appbar.dart';
 import 'package:taverna/core/api_client.dart';
 import 'package:taverna/models/item_model.dart';
 import 'package:taverna/repositories/item_repository.dart';
@@ -26,9 +27,7 @@ class _StoreScreenState extends State<StoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Loja'),
-      ),
+      appBar: const TavernAppbar(title: 'Loja'),
       body: AnimatedBuilder(
         animation: Listenable.merge([itemStore.isLoading, itemStore.state, itemStore.error]),
         builder: (context, child) {
