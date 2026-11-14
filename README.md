@@ -113,6 +113,18 @@ docker-compose up -d --build
 - O stage **Deploy** roda apenas na `main`. Ele envia o conteúdo de `build/web` para a branch `gh-pages`, usando a credencial `GITHUB_PAGES`, cadastrada em `jenkins/casc.yaml` a partir das variáveis do `.env`.
 - O GitHub Pages publica o site automaticamente a partir da branch `gh-pages`.
 
+## Refactoring
+
+### PR 11: https://github.com/C14-Inatel-2026-2/taverna-sorte-frontend/pull/11
+**Smell:** A navegação estava sendo feita no app.dart por meio de um enum AppRoutes, com um switch e um setstate. Estava tendo responsabilidade demais em uma unica classe e muito trabalho para fazer a navegação.
+**Refactoring Aplicado:** Mudei a navegação para utilizar as rotas nomeadas do flutter e criei o arquivo "routes.dart" para fazer a organização de rotas por lá.
+**Por quê:** Agora a questão da navegação fica bem mais organizada e facilitada também, tendo em vista que antes estava tendo que criar os comportamentos para navegação e agora só utiliza uma ferramenta que já é nativa do flutter.
+
+### PR 16: https://github.com/C14-Inatel-2026-2/taverna-sorte-frontend/pull/16
+**Smell:** Código duplicado, estava fazendo uma appbar para cada screen e todas com o mesmo comportamento.
+**Refactoring Aplicado:** Criei um novo widget TavernAppbar para passar ele no parametro "appbar" nos Scaffold de todas as screens do projeto.
+**Por quê:** Agora caso queira mudar algum comportamento da appbar é só editar no arquivo tavern_appbar.dart ao invés de mudar todas as screens.
+
 ## Equipe
 
 - [David Fernandes Barbon](https://github.com/DavidFBar)
