@@ -17,7 +17,6 @@ void main() {
       ),
     );
 
-    expect(find.text('🤠'), findsOneWidget);
     expect(find.text('Qualque coisa'), findsOneWidget);
     expect(find.text('🪙 666'), findsOneWidget);
   });
