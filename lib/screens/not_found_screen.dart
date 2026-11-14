@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taverna/widgets/tavern_appbar.dart';
 import 'package:taverna/app/routes/routes.dart';
 import 'package:taverna/widgets/app_button.dart';
 
@@ -8,9 +9,7 @@ class NotFoundScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Taverna da Sorte'),
-      ),
+      appBar: const TavernAppbar(title: 'Taverna da Sorte'),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
